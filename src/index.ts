@@ -9,7 +9,4 @@ app.get("/api/ping", (c) => {
   return c.json({ message: "pong" });
 });
 
-export default {
-  port: 3000,
-  fetch: app.fetch,
-};
+export default app;
