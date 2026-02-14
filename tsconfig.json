@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "hono/jsx",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "rewriteRelativeImportExtensions": true,
+    "strict": true,
+    "verbatimModuleSyntax": true
   }
 }
