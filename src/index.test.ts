@@ -1,7 +1,7 @@
 import { describe, test, expect } from "bun:test";
 import { app } from "./index.ts";
 
-describe("GET /api", async () => {
+describe("GET /api", () => {
   test("/ping", async () => {
     const response = await app.request("/api/ping");
     expect(response.status).toBe(200);
