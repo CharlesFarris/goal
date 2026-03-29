@@ -4,7 +4,7 @@ pipeline {
         stage('Build & Test') {
             agent {
                 docker {
-                    image 'oven/bun:latest'
+                    image 'oven/bun:1.1.20'
                 }
             }
             steps {
