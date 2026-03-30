@@ -1,5 +1,5 @@
 {
-  "$schema": "https://www.schemastore.org/package.json",
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "goal",
   "scripts": {
     "dev": "bun run --hot src/index.ts"
