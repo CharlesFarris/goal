@@ -1,13 +1,12 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
+  "$schema": "https://www.schemastore.org/package",
   "name": "goal",
-  "scripts": {
-    "dev": "bun run --hot src/index.ts"
-  },
-  "dependencies": {
-    "hono": "^4.12.9"
-  },
+  "workspaces": [
+    "./apps/client-datastar"
+  ],
+  "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
-  }
+    "@tsconfig/bun": "^1.0.10"
+  },
+  "version": "1.0.0"
 }
