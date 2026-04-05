@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/package",
-    "name": "goal-client-datastar",
+    "name": "@goal/client-datastar",
     "scripts": {
         "dev": "bun run --hot src/index.ts"
     },
