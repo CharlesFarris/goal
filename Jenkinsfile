@@ -4,13 +4,13 @@ pipeline {
         stage('Build & Test') {
             agent {
                 docker {
-                    image 'oven/bun:1.1.20'
+                    image 'oven/bun:1.3.11'
                 }
             }
             steps {
                 script {
                     sh 'bun install --frozen-lockfile'
-                    sh 'bun test'
+                    sh 'bun run test:apps'
                 }
             }
         }
