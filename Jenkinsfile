@@ -13,6 +13,7 @@ pipeline {
                     sh 'bun run test:apps'
                     sh 'bun run typecheck'
                     sh 'bun run format:check'
+                    sh 'bun run lint'
                 }
             }
         }
