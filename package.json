@@ -5,11 +5,13 @@
     "apps/*"
   ],
   "scripts": {
-    "test:apps": "bun test ./apps --jsx-import-source hono/jsx"
+    "test:apps": "bun test ./apps --jsx-import-source hono/jsx",
+    "typecheck": "bunx tsc -b --noEmit"
   },
   "private": true,
   "devDependencies": {
-    "@tsconfig/bun": "^1.0.10"
+    "@tsconfig/bun": "^1.0.10",
+    "typescript": "^6.0.2"
   },
   "version": "1.0.0"
 }
