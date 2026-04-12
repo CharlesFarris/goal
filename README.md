@@ -6,6 +6,12 @@ To install dependencies:
 bun install
 ```
 
+To format the codebase:
+
+```sh
+bun run format
+```
+
 To run:
 
 ```sh

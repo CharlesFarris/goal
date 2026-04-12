@@ -5,12 +5,15 @@
     "apps/*"
   ],
   "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test:apps": "bun test ./apps --jsx-import-source hono/jsx",
     "typecheck": "bunx tsc -b --noEmit"
   },
   "private": true,
   "devDependencies": {
     "@tsconfig/bun": "^1.0.10",
+    "prettier": "^3.8.2",
     "typescript": "^6.0.2"
   },
   "version": "1.0.0"
