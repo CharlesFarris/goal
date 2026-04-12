@@ -5,8 +5,8 @@
     "apps/*"
   ],
   "scripts": {
-    "format": "prettier --write . --ignore-unknown",
-    "format:check": "prettier --check . --ignore-unknown",
+    "format": "prettier . --write --ignore-unknown",
+    "format:check": "prettier . --check --ignore-unknown",
     "test:apps": "bun test ./apps --jsx-import-source hono/jsx",
     "typecheck": "bunx tsc -b --noEmit"
   },
