@@ -42,5 +42,4 @@ bun run dev
 
 ## Project Notes
 
-- `dist/` and `node_modules/` are generated output and should not be committed.
-- If `bun run test:apps` fails on files inside `dist/`, clean generated output first. Bun can discover compiled test files in `dist` and try to execute them.
+- `node_modules/` is generated output and should not be committed.

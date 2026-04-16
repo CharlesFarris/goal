@@ -1,6 +1,5 @@
 # deps
 node_modules/
-dist/
 
 # build artifacts
 **/tsconfig.tsbuildinfo
