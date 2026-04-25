@@ -6,8 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "biome:check": "bun biome check",
-    "biome:fix": "bun biome check --write",
+    "biome:check": "bunx biome check",
+    "biome:fix": "bunx biome check --write",
     "test:apps": "bun test ./apps --jsx-import-source hono/jsx",
     "typecheck": "bunx tsc -b --noEmit"
   },
