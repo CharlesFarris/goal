@@ -12,8 +12,7 @@ pipeline {
                     sh 'bun install --frozen-lockfile'
                     sh 'bun run test:apps'
                     sh 'bun run typecheck'
-                    sh 'bun run format:check'
-                    sh 'bun run lint'
+                    sh 'bun run biome:check'
                 }
             }
         }
