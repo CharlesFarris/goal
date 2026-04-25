@@ -17,10 +17,8 @@ bun install
 Run these from the repository root unless a command says otherwise.
 
 ```sh
-bun run format
-bun run format:check
-bun run lint
-bun run lint:fix
+bun run biome:check
+bun run biome:fix
 bun run typecheck
 bun run test:apps
 ```

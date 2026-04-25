@@ -6,10 +6,10 @@ To install dependencies:
 bun install
 ```
 
-To format the codebase:
+To lint and format the codebase:
 
 ```sh
-bun run format
+bun run biome:fix
 ```
 
 To run:

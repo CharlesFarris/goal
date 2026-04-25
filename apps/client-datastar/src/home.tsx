@@ -4,7 +4,7 @@ export const home = new Hono();
 
 home.get("/home", (c) => {
   return c.html(
-    <html>
+    <html lang="en">
       <head>
         <title>Goal</title>
       </head>
