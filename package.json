@@ -6,10 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "format:check": "prettier . --check --ignore-unknown",
-    "format": "prettier . --write --ignore-unknown",
-    "lint:fix": "bunx eslint . --fix",
-    "lint": "bunx eslint .",
+    "biome:check": "bun biome check",
+    "biome:fix": "bun biome check --write",
     "test:apps": "bun test ./apps --jsx-import-source hono/jsx",
     "typecheck": "bunx tsc -b --noEmit"
   },
