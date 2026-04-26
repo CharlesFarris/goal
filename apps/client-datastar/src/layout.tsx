@@ -15,7 +15,7 @@ export const DATASTAR_CDN_URL: string =
 /**
  * Root HTML shell component.
  *
- * Renders a full `<!DOCTYPE html>` page with a `<head>` containing the page
+ * Renders an `<html>` document shell with a `<head>` containing the page
  * title, the Datastar script, and a `<body>` containing the provided
  * children.
  */
