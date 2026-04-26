@@ -8,9 +8,8 @@ export type LayoutProps = Readonly<{
   children?: Child;
 }>;
 
-/** CDN URL for the Datastar v1.0.1 module bundle. */
-export const DATASTAR_CDN_URL: string =
-  "https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.1/bundles/datastar.js";
+/** Local path for the Datastar script. */
+export const DATASTAR_SCRIPT_PATH: string = "/scripts/datastar.js";
 
 /**
  * Root HTML shell component.
@@ -26,7 +25,7 @@ export function Layout(props: LayoutProps) {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{props.title}</title>
-        <script type="module" src={DATASTAR_CDN_URL} />
+        <script type="module" src={DATASTAR_SCRIPT_PATH} />
       </head>
       <body>{props.children}</body>
     </html>

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { app } from "./index.ts";
-import { DATASTAR_CDN_URL } from "./layout.tsx";
+import { DATASTAR_SCRIPT_PATH } from "./layout.tsx";
 
 describe("GET /api", () => {
   test("/ping", async () => {
@@ -25,7 +25,7 @@ describe("Home route", () => {
     expect(response.headers.get("content-type")).toContain("text/html");
 
     const html = await response.text();
-    expect(html).toContain(DATASTAR_CDN_URL);
+    expect(html).toContain(DATASTAR_SCRIPT_PATH);
     expect(html).toContain('data-on:click="@get(&#39;/home/hal&#39;)"');
     expect(html).toContain('<div id="hal">Waiting for an order...</div>');
   });
