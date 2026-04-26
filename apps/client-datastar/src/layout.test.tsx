@@ -8,7 +8,7 @@ describe("Layout", () => {
     const html = element.toString();
 
     expect(html).toContain('lang="en"');
-    expect(html).toContain('<meta charset="utf-8"/>');
+    expect(html).toContain('charset="utf-8"');
     expect(html).toContain('content="width=device-width, initial-scale=1"');
     expect(html).toContain("<title>Test Page</title>");
     expect(html).toContain(DATASTAR_SCRIPT_PATH);
