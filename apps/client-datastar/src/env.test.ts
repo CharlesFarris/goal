@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { environmentSchema } from "./environment.ts";
 
-describe("envSchema", () => {
+describe("environmentSchema", () => {
   describe("PORT", () => {
     test("defaults to 3000 when not provided", () => {
       const result = environmentSchema.parse({});
