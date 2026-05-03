@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
-import { env } from "./env.ts";
+import { environment } from "./environment.ts";
 import { home } from "./home.tsx";
 import { logger } from "./logger.ts";
 import { ping } from "./ping.ts";
@@ -15,6 +15,6 @@ app.get("/", (c) => c.redirect("/home"));
 logger.info("🔷 Application starting");
 
 export default {
-  port: env.PORT,
+  port: environment.PORT,
   fetch: app.fetch,
 };
