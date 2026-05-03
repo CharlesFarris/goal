@@ -1,6 +1,6 @@
 import { SeqTransport } from "@datalust/winston-seq";
 import winston from "winston";
-import { env } from "./env";
+import { env } from "./env.ts";
 
 // set default transport
 const transports: winston.transport[] = [
