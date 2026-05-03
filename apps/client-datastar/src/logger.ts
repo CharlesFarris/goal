@@ -1,6 +1,6 @@
 import { SeqTransport } from "@datalust/winston-seq";
 import winston from "winston";
-import { env } from "./env.ts";
+import { environment } from "./environment.ts";
 
 // set default transport
 const transports: winston.transport[] = [
@@ -10,12 +10,15 @@ const transports: winston.transport[] = [
 ];
 
 // check Seq configuration
-if (env.SEQ_SERVER_URL !== undefined && env.SEQ_API_KEY !== undefined) {
+if (
+  environment.SEQ_SERVER_URL !== undefined &&
+  environment.SEQ_API_KEY !== undefined
+) {
   // add Seq logging
   transports.push(
     new SeqTransport({
-      serverUrl: env.SEQ_SERVER_URL,
-      apiKey: env.SEQ_API_KEY,
+      serverUrl: environment.SEQ_SERVER_URL,
+      apiKey: environment.SEQ_API_KEY,
       onError: (e) => {
         console.error(e);
       },

@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const envSchema = z
+export const environmentSchema = z
   .object({
     PORT: z.coerce.number().default(3000),
     SEQ_API_KEY: z.string().optional(),
@@ -8,4 +8,4 @@ export const envSchema = z
   })
   .readonly();
 
-export const env = envSchema.parse(Bun.env);
+export const environment = environmentSchema.parse(Bun.env);
