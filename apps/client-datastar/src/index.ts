@@ -1,13 +1,11 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
+import { env } from "./env.ts";
 import { home } from "./home.tsx";
 import { logger } from "./logger.ts";
 import { ping } from "./ping.ts";
 
 export const app = new Hono();
-
-const portEnv = "PORT";
-const port = Bun.env[portEnv] ? Bun.env[portEnv] : 3000;
 
 app.use("/scripts/*", serveStatic({ root: "./public" }));
 app.route("/api", ping);
@@ -17,6 +15,6 @@ app.get("/", (c) => c.redirect("/home"));
 logger.info("🔷 Application starting");
 
 export default {
-  port,
+  port: env.PORT,
   fetch: app.fetch,
 };
