@@ -3,6 +3,9 @@ import type {
   GoalAchieved,
   GoalEvent,
   GoalSet,
+} from "./goalEvent.ts";
+import {
+  evolve,
   isGoalAbandoned,
   isGoalAchieved,
   isGoalSet,
@@ -11,12 +14,15 @@ import type {
   AbandonedGoal,
   AchievedGoal,
   GoalState,
+  SetGoal,
+  UnknownGoal,
+} from "./goalState.ts";
+import {
+  initialState,
   isAbandonedGoal,
   isAchievedGoal,
   isSetGoal,
   isUnknownGoal,
-  SetGoal,
-  UnknownGoal,
 } from "./goalState.ts";
 
 export type {
@@ -27,6 +33,13 @@ export type {
   GoalEvent,
   GoalSet,
   GoalState,
+  SetGoal,
+  UnknownGoal,
+};
+
+export {
+  evolve,
+  initialState,
   isAbandonedGoal,
   isAchievedGoal,
   isGoalAbandoned,
@@ -34,6 +47,4 @@ export type {
   isGoalSet,
   isSetGoal,
   isUnknownGoal,
-  SetGoal,
-  UnknownGoal,
 };

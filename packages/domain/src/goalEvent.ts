@@ -5,7 +5,7 @@ import {
   isAchievedGoal,
   isSetGoal,
   isUnknownGoal,
-} from "./goalState";
+} from "./goalState.ts";
 
 export type GoalSet = Event<"GoalSet", { id: string }>;
 

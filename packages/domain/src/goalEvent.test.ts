@@ -40,7 +40,7 @@ describe("evolve", () => {
     const state = { type: "SetGoal" as const, id: "goal-123" };
     const event: GoalAchieved = {
       type: "GoalAchieved",
-      data: { id: "goal-123" },
+      data: { id: state.id },
     };
     const newState = evolve(state, event);
     if (isAchievedGoal(newState)) {
@@ -82,7 +82,7 @@ describe("evolve", () => {
     const state = { type: "SetGoal" as const, id: "goal-123" };
     const event: GoalAbandoned = {
       type: "GoalAbandoned",
-      data: { id: "goal-123" },
+      data: { id: state.id },
     };
     const newState = evolve(state, event);
     if (isAbandonedGoal(newState)) {

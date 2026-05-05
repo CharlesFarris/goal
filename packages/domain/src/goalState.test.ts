@@ -1,10 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import {
   initialState,
+  isAbandonedGoal,
   isAchievedGoal,
   isSetGoal,
   isUnknownGoal,
-} from "./goalState";
+} from "./goalState.ts";
 
 describe("initialState", () => {
   test("returns UnknownGoal", () => {
@@ -25,6 +26,10 @@ describe("isUnknownGoal", () => {
   test("returns false for AchievedGoal", () => {
     expect(isUnknownGoal({ type: "AchievedGoal", id: "1" })).toBe(false);
   });
+
+  test("returns false for AbandonedGoal", () => {
+    expect(isUnknownGoal({ type: "AbandonedGoal", id: "1" })).toBe(false);
+  });
 });
 
 describe("isSetGoal", () => {
@@ -39,6 +44,10 @@ describe("isSetGoal", () => {
   test("returns false for AchievedGoal", () => {
     expect(isSetGoal({ type: "AchievedGoal", id: "1" })).toBe(false);
   });
+
+  test("returns false for AbandonedGoal", () => {
+    expect(isSetGoal({ type: "AbandonedGoal", id: "1" })).toBe(false);
+  });
 });
 
 describe("isAchievedGoal", () => {
@@ -52,5 +61,23 @@ describe("isAchievedGoal", () => {
 
   test("returns false for SetGoal", () => {
     expect(isAchievedGoal({ type: "SetGoal", id: "1" })).toBe(false);
+  });
+});
+
+describe("isAbandonedGoal", () => {
+  test("returns true for AbandonedGoal", () => {
+    expect(isAbandonedGoal({ type: "AbandonedGoal", id: "1" })).toBe(true);
+  });
+
+  test("returns false for UnknownGoal", () => {
+    expect(isAbandonedGoal({ type: "UnknownGoal" })).toBe(false);
+  });
+
+  test("returns false for SetGoal", () => {
+    expect(isAbandonedGoal({ type: "SetGoal", id: "1" })).toBe(false);
+  });
+
+  test("returns false for AchievedGoal", () => {
+    expect(isAbandonedGoal({ type: "AchievedGoal", id: "1" })).toBe(false);
   });
 });
