@@ -1,26 +1,19 @@
 import type { Event } from "@event-driven-io/emmett";
 import {
   type GoalState,
+  isAbandonedGoal,
   isAchievedGoal,
   isSetGoal,
   isUnknownGoal,
 } from "./goalState";
 
-export type GoalSet = Event<
-  "GoalSet",
-  {
-    id: string;
-  }
->;
+export type GoalSet = Event<"GoalSet", { id: string }>;
 
-export type GoalAchieved = Event<
-  "GoalAchieved",
-  {
-    id: string;
-  }
->;
+export type GoalAchieved = Event<"GoalAchieved", { id: string }>;
 
-export type GoalEvent = GoalSet | GoalAchieved;
+export type GoalAbandoned = Event<"GoalAbandoned", { id: string }>;
+
+export type GoalEvent = GoalSet | GoalAchieved | GoalAbandoned;
 
 export function isGoalSet(event: GoalEvent): event is GoalSet {
   return event.type === "GoalSet";
@@ -28,6 +21,10 @@ export function isGoalSet(event: GoalEvent): event is GoalSet {
 
 export function isGoalAchieved(event: GoalEvent): event is GoalAchieved {
   return event.type === "GoalAchieved";
+}
+
+export function isGoalAbandoned(event: GoalEvent): event is GoalAbandoned {
+  return event.type === "GoalAbandoned";
 }
 
 export function evolve(state: GoalState, event: GoalEvent): GoalState {
@@ -44,8 +41,16 @@ export function evolve(state: GoalState, event: GoalEvent): GoalState {
         type: "AchievedGoal",
         id: state.id,
       };
+    } else if (isGoalAbandoned(event) && event.data.id === state.id) {
+      return {
+        type: "AbandonedGoal",
+        id: state.id,
+      };
     }
   } else if (isAchievedGoal(state)) {
+    // TODO
+  } else if (isAbandonedGoal(state)) {
+    // TODO
   }
   return state;
 }
