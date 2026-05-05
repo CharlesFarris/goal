@@ -1,12 +1,17 @@
-import type { AchievedGoal, Goal, SetGoal, UnknownGoal } from "./goal.ts";
 import type { GoalAchieved, GoalEvent, GoalSet } from "./goalEvent.ts";
+import type {
+  AchievedGoal,
+  GoalState,
+  SetGoal,
+  UnknownGoal,
+} from "./goalState.ts";
 
 export type {
   AchievedGoal,
-  Goal,
   GoalAchieved,
   GoalEvent,
   GoalSet,
+  GoalState as Goal,
   SetGoal,
   UnknownGoal,
 };

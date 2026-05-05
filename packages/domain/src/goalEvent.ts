@@ -1,6 +1,10 @@
 import type { Event } from "@event-driven-io/emmett";
-import { randomUUIDv7 } from "bun";
-import type { Goal } from "./goal";
+import {
+  type GoalState,
+  isAchievedGoal,
+  isSetGoal,
+  isUnknownGoal,
+} from "./goalState";
 
 export type GoalSet = Event<
   "GoalSet",
@@ -18,26 +22,30 @@ export type GoalAchieved = Event<
 
 export type GoalEvent = GoalSet | GoalAchieved;
 
-export function evolve(state: Goal, event: GoalEvent): Goal {
-  switch (state.type) {
-    case "UnknownGoal":
-      if (event.type === "GoalSet") {
-        return {
-          type: "SetGoal",
-          id: randomUUIDv7(),
-        };
-      }
-      break;
-    case "SetGoal":
-      if (event.type === "GoalAchieved" && event.data.id === state.id) {
-        return {
-          type: "AchievedGoal",
-          id: state.id,
-        };
-      }
-      break;
-    case "AchievedGoal":
-      break;
+export function isGoalSet(event: GoalEvent): event is GoalSet {
+  return event.type === "GoalSet";
+}
+
+export function isGoalAchieved(event: GoalEvent): event is GoalAchieved {
+  return event.type === "GoalAchieved";
+}
+
+export function evolve(state: GoalState, event: GoalEvent): GoalState {
+  if (isUnknownGoal(state)) {
+    if (isGoalSet(event)) {
+      return {
+        type: "SetGoal",
+        id: event.data.id,
+      };
+    }
+  } else if (isSetGoal(state)) {
+    if (isGoalAchieved(event) && event.data.id === state.id) {
+      return {
+        type: "AchievedGoal",
+        id: state.id,
+      };
+    }
+  } else if (isAchievedGoal(state)) {
   }
   return state;
 }
