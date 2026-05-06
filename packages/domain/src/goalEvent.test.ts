@@ -29,6 +29,8 @@ describe("evolve", () => {
     const newState = evolve(state, event);
     if (isSetGoal(newState)) {
       expect(newState.id).toEqual("test-id");
+    } else {
+      expect(true).toBeFalse();
     }
   });
 
@@ -51,6 +53,8 @@ describe("evolve", () => {
     const newState = evolve(state, event);
     if (isAchievedGoal(newState)) {
       expect(newState.id).toEqual("goal-123");
+    } else {
+      expect(true).toBeFalse();
     }
   });
 
