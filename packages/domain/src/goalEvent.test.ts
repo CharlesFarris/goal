@@ -1,9 +1,15 @@
 import { describe, expect, test } from "bun:test";
-import type { GoalAbandoned, GoalAchieved, GoalSet } from "./goalEvent.ts";
+import type {
+  GoalAbandoned,
+  GoalAchieved,
+  GoalResumed,
+  GoalSet,
+} from "./goalEvent.ts";
 import {
   evolve,
   isGoalAbandoned,
   isGoalAchieved,
+  isGoalResumed,
   isGoalSet,
 } from "./goalEvent.ts";
 import {
@@ -102,11 +108,35 @@ describe("evolve", () => {
     expect(newState).toBe(state);
   });
 
-  test("any event on AbandonedGoal returns unchanged state", () => {
+  test("GoalAbandoned on AbandonedGoal returns unchanged state", () => {
     const state = { type: "AbandonedGoal" as const, id: "goal-123" };
     const event: GoalAbandoned = {
       type: "GoalAbandoned",
       data: { id: "goal-123" },
+    };
+    const newState = evolve(state, event);
+    expect(newState).toBe(state);
+  });
+
+  test("GoalResumed on AbandonedGoal with matching id returns SetGoal", () => {
+    const state = { type: "AbandonedGoal" as const, id: "goal-123" };
+    const event: GoalResumed = {
+      type: "GoalResumed",
+      data: { id: state.id },
+    };
+    const newState = evolve(state, event);
+    if (isSetGoal(newState)) {
+      expect(newState.id).toEqual("goal-123");
+    } else {
+      expect(true).toBe(false);
+    }
+  });
+
+  test("GoalResumed on AbandonedGoal with non-matching id returns unchanged state", () => {
+    const state = { type: "AbandonedGoal" as const, id: "goal-123" };
+    const event: GoalResumed = {
+      type: "GoalResumed",
+      data: { id: "other-id" },
     };
     const newState = evolve(state, event);
     expect(newState).toBe(state);
@@ -128,6 +158,11 @@ describe("isGoalSet", () => {
     const event: GoalAbandoned = { type: "GoalAbandoned", data: { id: "1" } };
     expect(isGoalSet(event)).toBe(false);
   });
+
+  test("returns false for GoalResumed event", () => {
+    const event: GoalResumed = { type: "GoalResumed", data: { id: "1" } };
+    expect(isGoalSet(event)).toBe(false);
+  });
 });
 
 describe("isGoalAchieved", () => {
@@ -143,6 +178,11 @@ describe("isGoalAchieved", () => {
 
   test("returns false for GoalAbandoned event", () => {
     const event: GoalAbandoned = { type: "GoalAbandoned", data: { id: "1" } };
+    expect(isGoalAchieved(event)).toBe(false);
+  });
+
+  test("returns false for GoalResumed event", () => {
+    const event: GoalResumed = { type: "GoalResumed", data: { id: "1" } };
     expect(isGoalAchieved(event)).toBe(false);
   });
 });
@@ -161,5 +201,32 @@ describe("isGoalAbandoned", () => {
   test("returns false for GoalAchieved event", () => {
     const event: GoalAchieved = { type: "GoalAchieved", data: { id: "1" } };
     expect(isGoalAbandoned(event)).toBe(false);
+  });
+
+  test("returns false for GoalResumed event", () => {
+    const event: GoalResumed = { type: "GoalResumed", data: { id: "1" } };
+    expect(isGoalAbandoned(event)).toBe(false);
+  });
+});
+
+describe("isGoalResumed", () => {
+  test("returns true for GoalResumed event", () => {
+    const event: GoalResumed = { type: "GoalResumed", data: { id: "1" } };
+    expect(isGoalResumed(event)).toBe(true);
+  });
+
+  test("returns false for GoalSet event", () => {
+    const event: GoalSet = { type: "GoalSet", data: { id: "1" } };
+    expect(isGoalResumed(event)).toBe(false);
+  });
+
+  test("returns false for GoalAchieved event", () => {
+    const event: GoalAchieved = { type: "GoalAchieved", data: { id: "1" } };
+    expect(isGoalResumed(event)).toBe(false);
+  });
+
+  test("returns false for GoalAbandoned event", () => {
+    const event: GoalAbandoned = { type: "GoalAbandoned", data: { id: "1" } };
+    expect(isGoalResumed(event)).toBe(false);
   });
 });

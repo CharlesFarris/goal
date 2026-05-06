@@ -13,7 +13,9 @@ export type GoalAchieved = Event<"GoalAchieved", { id: string }>;
 
 export type GoalAbandoned = Event<"GoalAbandoned", { id: string }>;
 
-export type GoalEvent = GoalSet | GoalAchieved | GoalAbandoned;
+export type GoalResumed = Event<"GoalResumed", { id: string }>;
+
+export type GoalEvent = GoalSet | GoalAchieved | GoalAbandoned | GoalResumed;
 
 export function isGoalSet(event: GoalEvent): event is GoalSet {
   return event.type === "GoalSet";
@@ -25,6 +27,10 @@ export function isGoalAchieved(event: GoalEvent): event is GoalAchieved {
 
 export function isGoalAbandoned(event: GoalEvent): event is GoalAbandoned {
   return event.type === "GoalAbandoned";
+}
+
+export function isGoalResumed(event: GoalEvent): event is GoalResumed {
+  return event.type === "GoalResumed";
 }
 
 export function evolve(state: GoalState, event: GoalEvent): GoalState {
@@ -50,7 +56,12 @@ export function evolve(state: GoalState, event: GoalEvent): GoalState {
   } else if (isAchievedGoal(state)) {
     // TODO
   } else if (isAbandonedGoal(state)) {
-    // TODO
+    if (isGoalResumed(event) && event.data.id === state.id) {
+      return {
+        type: "SetGoal",
+        id: state.id,
+      };
+    }
   }
   return state;
 }
