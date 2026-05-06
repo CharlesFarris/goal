@@ -4,20 +4,18 @@ import type {
   GoalAchieved,
   GoalResumed,
   GoalSet,
-} from "./goalEvent.ts";
+} from "./index.ts";
 import {
   evolve,
+  initialState,
+  isAbandonedGoal,
+  isAchievedGoal,
   isGoalAbandoned,
   isGoalAchieved,
   isGoalResumed,
   isGoalSet,
-} from "./goalEvent.ts";
-import {
-  initialState,
-  isAbandonedGoal,
-  isAchievedGoal,
   isSetGoal,
-} from "./goalState.ts";
+} from "./index.ts";
 
 describe("evolve", () => {
   test("GoalSet on UnknownGoal returns SetGoal", () => {

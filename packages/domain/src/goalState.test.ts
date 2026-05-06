@@ -5,7 +5,7 @@ import {
   isAchievedGoal,
   isSetGoal,
   isUnknownGoal,
-} from "./goalState.ts";
+} from "./index.ts";
 
 describe("initialState", () => {
   test("returns UnknownGoal", () => {
