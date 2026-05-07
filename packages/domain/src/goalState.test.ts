@@ -62,6 +62,10 @@ describe("isAchievedGoal", () => {
   test("returns false for SetGoal", () => {
     expect(isAchievedGoal({ type: "SetGoal", id: "1" })).toBe(false);
   });
+
+  test("returns false for AbandonedGoal", () => {
+    expect(isAchievedGoal({ type: "AbandonedGoal", id: "1" })).toBe(false);
+  });
 });
 
 describe("isAbandonedGoal", () => {

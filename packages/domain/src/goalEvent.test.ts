@@ -42,6 +42,13 @@ describe("evolve", () => {
     expect(newState).toBe(state);
   });
 
+  test("GoalResumed on UnknownGoal returns unchanged state", () => {
+    const state = initialState();
+    const event: GoalResumed = { type: "GoalResumed", data: { id: "test-id" } };
+    const newState = evolve(state, event);
+    expect(newState).toBe(state);
+  });
+
   test("GoalAchieved on SetGoal with matching id returns AchievedGoal", () => {
     const state = { type: "SetGoal" as const, id: "goal-123" };
     const event: GoalAchieved = {
@@ -76,12 +83,37 @@ describe("evolve", () => {
     expect(newState).toBe(state);
   });
 
-  test("any event on AchievedGoal returns unchanged state", () => {
+  test("GoalResumed on SetGoal returns unchanged state", () => {
+    const state = { type: "SetGoal" as const, id: "goal-123" };
+    const event: GoalResumed = { type: "GoalResumed", data: { id: "goal-123" } };
+    const newState = evolve(state, event);
+    expect(newState).toBe(state);
+  });
+
+  test("GoalSet on AchievedGoal returns unchanged state", () => {
     const state = { type: "AchievedGoal" as const, id: "goal-123" };
-    const event: GoalAchieved = {
-      type: "GoalAchieved",
-      data: { id: "goal-123" },
-    };
+    const event: GoalSet = { type: "GoalSet", data: { id: "goal-123" } };
+    const newState = evolve(state, event);
+    expect(newState).toBe(state);
+  });
+
+  test("GoalAchieved on AchievedGoal returns unchanged state", () => {
+    const state = { type: "AchievedGoal" as const, id: "goal-123" };
+    const event: GoalAchieved = { type: "GoalAchieved", data: { id: "goal-123" } };
+    const newState = evolve(state, event);
+    expect(newState).toBe(state);
+  });
+
+  test("GoalAbandoned on AchievedGoal returns unchanged state", () => {
+    const state = { type: "AchievedGoal" as const, id: "goal-123" };
+    const event: GoalAbandoned = { type: "GoalAbandoned", data: { id: "goal-123" } };
+    const newState = evolve(state, event);
+    expect(newState).toBe(state);
+  });
+
+  test("GoalResumed on AchievedGoal returns unchanged state", () => {
+    const state = { type: "AchievedGoal" as const, id: "goal-123" };
+    const event: GoalResumed = { type: "GoalResumed", data: { id: "goal-123" } };
     const newState = evolve(state, event);
     expect(newState).toBe(state);
   });
