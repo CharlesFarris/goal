@@ -54,7 +54,7 @@ export function evolve(state: GoalState, event: GoalEvent): GoalState {
       };
     }
   } else if (isAchievedGoal(state)) {
-    // TODO
+    // AchievedGoal is terminal; ignore all subsequent events during replay.
   } else if (isAbandonedGoal(state)) {
     if (isGoalResumed(event) && event.data.id === state.id) {
       return {
