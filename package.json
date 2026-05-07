@@ -11,7 +11,7 @@
     "biome:fix": "bunx biome check . --write",
     "test:apps": "bun test ./apps --jsx-import-source hono/jsx",
     "test:packages": "bun test ./packages",
-    "test:all": "bun test:packages && bun run test:apps",
+    "test:all": "bun run test:packages && bun run test:apps",
     "typecheck": "bunx tsc -b --noEmit"
   },
   "private": true,
