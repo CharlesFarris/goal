@@ -6,6 +6,14 @@ To install dependencies:
 bun install
 ```
 
+To run tests:
+
+```sh
+bun run test:packages
+bun run test:apps
+bun run test:all
+```
+
 To lint and format the codebase:
 
 ```sh

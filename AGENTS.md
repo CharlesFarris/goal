@@ -20,7 +20,7 @@ Run these from the repository root unless a command says otherwise.
 bun run biome:check
 bun run biome:fix
 bun run typecheck
-bun run test:apps
+bun run test:all
 ```
 
 To start the current app:
