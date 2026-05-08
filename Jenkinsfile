@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     sh 'bun install --frozen-lockfile'
-                    sh 'bun run test:apps'
+                    sh 'bun run test:all'
                     sh 'bun run typecheck'
                     sh 'bun run biome:ci'
                 }

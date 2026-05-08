@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@datalust/winston-seq": "^3.0.1",
+    "@goal/domain": "workspace:*",
     "hono": "^4.12.16",
     "winston": "^3.19.0",
     "zod": "^4.4.2"
