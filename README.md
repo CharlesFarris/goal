@@ -1,32 +1,46 @@
 # goal
 
-To install dependencies:
+## Setup
 
 ```sh
 bun install
 ```
 
-To run tests:
+## Testing
+
+Run tests for packages:
 
 ```sh
 bun run test:packages
+```
+
+Run tests for applications:
+
+```sh
 bun run test:apps
+```
+
+Run all tests:
+
+```sh
 bun run test:all
 ```
 
-To lint and format the codebase:
+## Linting
 
 ```sh
 bun run biome:fix
 ```
 
-To run:
+## Running:
 
 ```sh
 bun run dev
 ```
 
 open <http://localhost:3000>
+
+## Structure
 
 Workspace packages live under:
 
